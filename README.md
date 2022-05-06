@@ -14,12 +14,12 @@ purchase -
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | email                 | string     | null: false, unique: true      | 
-| password              | string     | null: false                    |
+| encrypted_password    | string     | null: false                    |
 | name_first_name       | string     | null: false                    |
 | name_family_name      | string     | null: false                    |
 | name_first_name_kana  | string     | null: false                    |
 | name_family_name_kana | string     | null: false                    |
-| birthday              | integer    | null: false                    |
+| birthday              | date       | null: false                    |
 | nickname              | string     | null: false                    |
 
 ### Association
@@ -28,16 +28,17 @@ purchase -
 
 ## itemsテーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| item_name           | string     | null: false                    | 
-| item_text           | text       | null: false                    |
-| item_genre          | string     | null: false                    |
-| item_status         | string     | null: false                    |
-| item_shipping_cost  | string     | null: false                    |
-| item_shipping_area  | string     | null: false                    |
-| item_shipping_days  | string     | null: false                    |
-| item_price          | integer    | null: false                    |
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| item_name              | string     | null: false                    | 
+| item_text              | text       | null: false                    |
+| item_genre _id         | integer    | null: false                    |
+| item_status _id        | integer    | null: false                    |
+| item_shipping_cost _id | integer    | null: false                    |
+| prefecture _id         | integer    | null: false                    |
+| item_shipping_days _id | integer    | null: false                    |
+| item_price             | integer    | null: false                    |
+| user                   | references | foreign_key: true              |
 
 ### Association
 - belongs_to :user
@@ -47,8 +48,8 @@ purchase -
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| item_id    | references | null: false, foreign_key: true |
-| user_id    | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :item
@@ -59,13 +60,13 @@ purchase -
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| post_number     | integer    | null: false                    |
-| prefecture      | string     | null: false                    |
+| post_number     | string     | null: false                    |
+| prefecture _id  | integer    | null: false                    |
 | municipality    | string     | null: false                    |
 | address         | string     | null: false                    |
-| building_name   | string     | null: false                    |
-| phone_number    | integer    | null: false                    |
-| user_id         | references | null: false, foreign_key: true |
+| building_name   | string     |                                |
+| phone_number    | string     | null: false                    |
+| purchase        | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase

@@ -8,6 +8,7 @@ belongs_to :item_status
 belongs_to :item_shipping_cost
 belongs_to :item_shipping_days
 belongs_to :prefecture
+has_one_attached :image
 
 validates :item_name,             presence: true
 validates :text,                  presence: true

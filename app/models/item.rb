@@ -18,6 +18,6 @@ validates :item_status_id,        presence: true, numericality: { other_than: 1 
 validates :item_shipping_cost_id, presence: true, numericality: { other_than: 1 ,message: "can't be blank"}
 validates :prefecture_id,         presence: true, numericality: { other_than: 1 ,message: "can't be blank"}
 validates :item_shipping_days_id, presence: true, numericality: { other_than: 1 ,message: "can't be blank"}
-validates :item_price,            presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to:9999999,message: "is out of setting range"}, format: {with:/\A\d{3}/,message: "is invalid. Input half-width characters"}
+validates :item_price,            presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to:9999999,message: "is out of setting range"}
 
 end

@@ -58,7 +58,7 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include ("Item price can't be blank")
     end
-    it "商品価格が指定範囲以外だと出品できない" do
+    it "商品価格が300円未満では出品できない" do
       @item.item_price = "100"
       @item.valid?
       expect(@item.errors.full_messages).to include ("Item price is out of setting range")
@@ -66,7 +66,18 @@ RSpec.describe Item, type: :model do
     it "商品価格が全角入力だと出品できない" do
       @item.item_price = "１０００"
       @item.valid?
-      expect(@item.errors.full_messages).to include ("Item price is invalid. Input half-width characters")
+      expect(@item.errors.full_messages).to include ("Item price is out of setting range")
     end
+    it "商品価格が9999999円以上では出品できない" do
+      @item.item_price = "10000000"
+      @item.valid?
+      expect(@item.errors.full_messages).to include ("Item price is out of setting range")
+    end
+    it "userが紐づいていないと出品できない" do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include ("User must exist")
+    end
+
   end
 end

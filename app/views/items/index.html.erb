@@ -122,7 +122,6 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
-            <%# 下記のlink_toは商品詳細ページへのリンクを設定する。商品詳細機能実装後このコメントアウトは削除%>
             <%= link_to "/items/#{item.id}" do %>
               <div class='item-img-content'>
                 <%= image_tag(item.image, class: "item-img") %>

@@ -1,7 +1,7 @@
 class PurchaseAddress
   include ActiveModel::Model
 
-  attr_accessor :item_id, :user_id, :post_number, :prefecture_id, :municipality, :address, :building_name, :phone_number, :purchase_id
+  attr_accessor :item_id, :user_id, :post_number, :prefecture_id, :municipality, :address, :building_name, :phone_number, :purchase_id, :token
 
   with_options presence: true do
     validates :item_id
@@ -12,6 +12,8 @@ class PurchaseAddress
     validates :address
     validates :phone_number
   end
+
+    validates :token, presence:true
 
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)

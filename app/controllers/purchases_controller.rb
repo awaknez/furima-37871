@@ -5,6 +5,9 @@ class PurchasesController < ApplicationController
   def index
     @item = Item.find(params[:item_id])    #itemテーブル（別テーブル）から参照するので、paramsはカラム名で指定。
     @purchase_address = PurchaseAddress.new
+    if (current_user.id != @item.user.id) && (@item.purchase != nil)
+      redirect_to root_path
+    end
   end
 
 

@@ -11,10 +11,10 @@ class PurchaseAddress
     validates :municipality
     validates :address
     validates :phone_number,   format:{with:/\A[0-9]{10,11}\z/}
+    validates :token
   end
 
-    validates :token, presence:true
-
+ 
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
     Address.create(post_number: post_number,prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, phone_number: phone_number, purchase_id: purchase.id)
